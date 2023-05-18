@@ -1,5 +1,7 @@
 public class Tempo : Gtk.Application {
 
+  const string path = "/storage/Code/Tempo/src/Styles/TempText.css";
+
   public Tempo () {
 
     Object (
@@ -11,23 +13,49 @@ public class Tempo : Gtk.Application {
 
   protected override void activate () {
     
-    var headerbar = new Gtk.HeaderBar () {
-      show_close_button = true,
+    Gtk.CssProvider cssProvider = new Gtk.CssProvider ();
+
+    if (!FileUtils.test (path, FileTest.EXISTS))
+      return;
+      
+    Gtk.Settings.get_default ().set (
+      "gtk-application-prefer-dark-theme", 
+      true
+    );
+
+    try {
+      
+      cssProvider.load_from_path (path);
+      Gtk.StyleContext.add_provider_for_screen (
+        Gdk.Screen.get_default (), 
+        cssProvider, 
+        Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+      );
+    
+    } catch (Error e) {
+      
+      error ("Cannot load CSS stylesheet: %s", e.message);
+
+    }
+
+    Gtk.HeaderBar headerbar = new Gtk.HeaderBar () {
       title = "Tempo"
     };
 
-    var header_context = headerbar.get_style_context ();
-    header_context.add_class (Gtk.STYLE_CLASS_FLAT);
+    var headerContext = headerbar.get_style_context ();
+    headerContext.add_class (Gtk.STYLE_CLASS_FLAT);
 
-    var main_window = new Gtk.ApplicationWindow (this) {
-      default_height = 300,
-      default_width = 300,
+    Gtk.ApplicationWindow mainWindow = new Gtk.ApplicationWindow (this) {
+      default_height = 200,
+      default_width = 200,
       title = "Tempo",
       resizable = false
     };
     
-    main_window.set_titlebar (headerbar);
-    main_window.show_all ();
+    TempText tempText = new TempText ();
+    mainWindow.set_titlebar (headerbar);
+    mainWindow.add (tempText.get_box ());
+    mainWindow.show_all ();
 
   }
 
