@@ -1,0 +1,15 @@
+decoration, window, window.background {  
+  border-radius: 8px;  
+}
+
+.temperature-font{
+  font-size: 60px;
+}
+
+.background.csd {
+  border-radius: 8px;
+}
+
+.background.maximized, .background.solid-csd {
+  border-radius: 8px;
+}

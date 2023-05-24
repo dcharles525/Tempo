@@ -13,6 +13,9 @@ public class Tempo : Gtk.Application {
 
   protected override void activate () {
     
+    GLib.Settings settings = new GLib.Settings (
+      "com.github.dcharles525.tempo"
+    );
     Gtk.CssProvider cssProvider = new Gtk.CssProvider ();
 
     if (!FileUtils.test (path, FileTest.EXISTS))
@@ -53,9 +56,24 @@ public class Tempo : Gtk.Application {
     };
     
     TempText tempText = new TempText ();
+
     mainWindow.set_titlebar (headerbar);
     mainWindow.add (tempText.get_box ());
+    mainWindow.move (
+      settings.get_value ("x").get_int32 (), 
+      settings.get_value ("y").get_int32 ()
+    );
     mainWindow.show_all ();
+    mainWindow.set_keep_above (true);
+    mainWindow.configure_event.connect(() => {
+
+      int x, y;
+      mainWindow.get_position (out x, out y);
+      settings.set_value ("x", x);
+      settings.set_value ("y", y);
+      return false;
+
+    });
 
   }
 
