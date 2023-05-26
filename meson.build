@@ -30,5 +30,11 @@ install_data (
   rename: meson.project_name () + '.gschema.xml'
 )
 
+install_data (
+  'data' / 'tempo.desktop',
+  install_dir: '/etc/xdg/autostart',
+  rename: meson.project_name () + '.desktop'
+)
+
 meson.add_install_script ('meson/post_install.py')
 

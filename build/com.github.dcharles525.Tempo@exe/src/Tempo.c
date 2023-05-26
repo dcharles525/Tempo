@@ -9,7 +9,6 @@
 #include <glib.h>
 #include <glib/gstdio.h>
 #include <gdk/gdk.h>
-#include <stdio.h>
 
 #define TYPE_TEMPO (tempo_get_type ())
 #define TEMPO(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_TEMPO, Tempo))
@@ -91,7 +90,7 @@ tempo_construct (GType object_type)
 	self = (Tempo*) g_object_new (object_type, "application-id", "com.github.dcharles525.tempo", "flags", G_APPLICATION_FLAGS_NONE, NULL);
 #line 5 "../src/Tempo.vala"
 	return self;
-#line 95 "Tempo.c"
+#line 94 "Tempo.c"
 }
 
 Tempo*
@@ -99,7 +98,7 @@ tempo_new (void)
 {
 #line 5 "../src/Tempo.vala"
 	return tempo_construct (TYPE_TEMPO);
-#line 103 "Tempo.c"
+#line 102 "Tempo.c"
 }
 
 static Block1Data*
@@ -109,7 +108,7 @@ block1_data_ref (Block1Data* _data1_)
 	g_atomic_int_inc (&_data1_->_ref_count_);
 #line 14 "../src/Tempo.vala"
 	return _data1_;
-#line 113 "Tempo.c"
+#line 112 "Tempo.c"
 }
 
 static void
@@ -119,7 +118,7 @@ block1_data_unref (void * _userdata_)
 	_data1_ = (Block1Data*) _userdata_;
 #line 14 "../src/Tempo.vala"
 	if (g_atomic_int_dec_and_test (&_data1_->_ref_count_)) {
-#line 123 "Tempo.c"
+#line 122 "Tempo.c"
 		Tempo* self;
 #line 14 "../src/Tempo.vala"
 		self = _data1_->self;
@@ -131,7 +130,7 @@ block1_data_unref (void * _userdata_)
 		_g_object_unref0 (self);
 #line 14 "../src/Tempo.vala"
 		g_slice_free (Block1Data, _data1_);
-#line 135 "Tempo.c"
+#line 134 "Tempo.c"
 	}
 }
 
@@ -140,23 +139,23 @@ _g_object_ref0 (gpointer self)
 {
 #line 48 "../src/Tempo.vala"
 	return self ? g_object_ref (self) : NULL;
-#line 144 "Tempo.c"
+#line 143 "Tempo.c"
 }
 
 static GVariant*
 _variant_new1 (gint value)
 {
-#line 73 "../src/Tempo.vala"
+#line 72 "../src/Tempo.vala"
 	return g_variant_ref_sink (g_variant_new_int32 (value));
-#line 152 "Tempo.c"
+#line 151 "Tempo.c"
 }
 
 static GVariant*
 _variant_new2 (gint value)
 {
-#line 74 "../src/Tempo.vala"
+#line 73 "../src/Tempo.vala"
 	return g_variant_ref_sink (g_variant_new_int32 (value));
-#line 160 "Tempo.c"
+#line 159 "Tempo.c"
 }
 
 static gboolean
@@ -168,63 +167,42 @@ __lambda5_ (Block1Data* _data1_)
 	GtkApplicationWindow* _tmp0_;
 	gint _tmp1_ = 0;
 	gint _tmp2_ = 0;
-	FILE* _tmp3_;
-	FILE* _tmp4_;
+	GSettings* _tmp3_;
+	GVariant* _tmp4_;
 	GSettings* _tmp5_;
 	GVariant* _tmp6_;
-	GVariant* _tmp7_;
-	GSettings* _tmp8_;
-	GVariant* _tmp9_;
-	GSettings* _tmp10_;
-	GVariant* _tmp11_;
 	gboolean result = FALSE;
 #line 68 "../src/Tempo.vala"
 	self = _data1_->self;
-#line 70 "../src/Tempo.vala"
+#line 71 "../src/Tempo.vala"
 	_tmp0_ = _data1_->mainWindow;
-#line 70 "../src/Tempo.vala"
+#line 71 "../src/Tempo.vala"
 	gtk_window_get_position ((GtkWindow*) _tmp0_, &_tmp1_, &_tmp2_);
-#line 70 "../src/Tempo.vala"
+#line 71 "../src/Tempo.vala"
 	x = _tmp1_;
-#line 70 "../src/Tempo.vala"
+#line 71 "../src/Tempo.vala"
 	y = _tmp2_;
-#line 71 "../src/Tempo.vala"
-	_tmp3_ = stdout;
-#line 71 "../src/Tempo.vala"
-	fprintf (_tmp3_, "%d \n", x);
 #line 72 "../src/Tempo.vala"
-	_tmp4_ = stdout;
+	_tmp3_ = _data1_->settings;
 #line 72 "../src/Tempo.vala"
+	_tmp4_ = _variant_new1 (x);
+#line 72 "../src/Tempo.vala"
+	g_settings_set_value (_tmp3_, "x", _tmp4_);
+#line 72 "../src/Tempo.vala"
+	_g_variant_unref0 (_tmp4_);
+#line 73 "../src/Tempo.vala"
 	_tmp5_ = _data1_->settings;
-#line 72 "../src/Tempo.vala"
-	_tmp6_ = g_settings_get_value (_tmp5_, "x");
-#line 72 "../src/Tempo.vala"
-	_tmp7_ = _tmp6_;
-#line 72 "../src/Tempo.vala"
-	fprintf (_tmp4_, "%d \n", (gint) g_variant_get_int32 (_tmp7_));
-#line 72 "../src/Tempo.vala"
-	_g_variant_unref0 (_tmp7_);
 #line 73 "../src/Tempo.vala"
-	_tmp8_ = _data1_->settings;
+	_tmp6_ = _variant_new2 (y);
 #line 73 "../src/Tempo.vala"
-	_tmp9_ = _variant_new1 (x);
+	g_settings_set_value (_tmp5_, "y", _tmp6_);
 #line 73 "../src/Tempo.vala"
-	g_settings_set_value (_tmp8_, "x", _tmp9_);
-#line 73 "../src/Tempo.vala"
-	_g_variant_unref0 (_tmp9_);
+	_g_variant_unref0 (_tmp6_);
 #line 74 "../src/Tempo.vala"
-	_tmp10_ = _data1_->settings;
-#line 74 "../src/Tempo.vala"
-	_tmp11_ = _variant_new2 (y);
-#line 74 "../src/Tempo.vala"
-	g_settings_set_value (_tmp10_, "y", _tmp11_);
-#line 74 "../src/Tempo.vala"
-	_g_variant_unref0 (_tmp11_);
-#line 75 "../src/Tempo.vala"
 	result = FALSE;
-#line 75 "../src/Tempo.vala"
+#line 74 "../src/Tempo.vala"
 	return result;
-#line 228 "Tempo.c"
+#line 206 "Tempo.c"
 }
 
 static gboolean
@@ -236,7 +214,7 @@ ___lambda5__gtk_widget_configure_event (GtkWidget* _sender,
 	result = __lambda5_ (self);
 #line 68 "../src/Tempo.vala"
 	return result;
-#line 240 "Tempo.c"
+#line 218 "Tempo.c"
 }
 
 static void
@@ -303,13 +281,13 @@ tempo_real_activate (GApplication* base)
 		_data1_ = NULL;
 #line 22 "../src/Tempo.vala"
 		return;
-#line 307 "Tempo.c"
+#line 285 "Tempo.c"
 	}
 #line 24 "../src/Tempo.vala"
 	_tmp2_ = gtk_settings_get_default ();
 #line 24 "../src/Tempo.vala"
 	g_object_set ((GObject*) _tmp2_, "gtk-application-prefer-dark-theme", TRUE, NULL);
-#line 313 "Tempo.c"
+#line 291 "Tempo.c"
 	{
 		GtkCssProvider* _tmp3_;
 		GdkScreen* _tmp4_;
@@ -320,7 +298,7 @@ tempo_real_activate (GApplication* base)
 		gtk_css_provider_load_from_path (_tmp3_, TEMPO_path, &_inner_error0_);
 #line 31 "../src/Tempo.vala"
 		if (G_UNLIKELY (_inner_error0_ != NULL)) {
-#line 324 "Tempo.c"
+#line 302 "Tempo.c"
 			goto __catch0_g_error;
 		}
 #line 32 "../src/Tempo.vala"
@@ -329,7 +307,7 @@ tempo_real_activate (GApplication* base)
 		_tmp5_ = cssProvider;
 #line 32 "../src/Tempo.vala"
 		gtk_style_context_add_provider_for_screen (_tmp4_, (GtkStyleProvider*) _tmp5_, (guint) GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-#line 333 "Tempo.c"
+#line 311 "Tempo.c"
 	}
 	goto __finally0;
 	__catch0_g_error:
@@ -346,7 +324,7 @@ tempo_real_activate (GApplication* base)
 		g_error ("Tempo.vala:40: Cannot load CSS stylesheet: %s", _tmp6_);
 #line 29 "../src/Tempo.vala"
 		_g_error_free0 (e);
-#line 350 "Tempo.c"
+#line 328 "Tempo.c"
 	}
 	__finally0:
 #line 29 "../src/Tempo.vala"
@@ -363,7 +341,7 @@ tempo_real_activate (GApplication* base)
 		g_clear_error (&_inner_error0_);
 #line 29 "../src/Tempo.vala"
 		return;
-#line 367 "Tempo.c"
+#line 345 "Tempo.c"
 	}
 #line 44 "../src/Tempo.vala"
 	_tmp7_ = g_strdup ("Tempo");
@@ -475,7 +453,7 @@ tempo_real_activate (GApplication* base)
 	block1_data_unref (_data1_);
 #line 14 "../src/Tempo.vala"
 	_data1_ = NULL;
-#line 479 "Tempo.c"
+#line 457 "Tempo.c"
 }
 
 static gint
@@ -498,7 +476,7 @@ tempo_main (gchar** args,
 	result = _tmp2_;
 #line 82 "../src/Tempo.vala"
 	return result;
-#line 502 "Tempo.c"
+#line 480 "Tempo.c"
 }
 
 int
@@ -507,7 +485,7 @@ main (int argc,
 {
 #line 80 "../src/Tempo.vala"
 	return tempo_main (argv, argc);
-#line 511 "Tempo.c"
+#line 489 "Tempo.c"
 }
 
 static void
@@ -518,7 +496,7 @@ tempo_class_init (TempoClass * klass,
 	tempo_parent_class = g_type_class_peek_parent (klass);
 #line 1 "../src/Tempo.vala"
 	((GApplicationClass *) klass)->activate = (void (*) (GApplication*)) tempo_real_activate;
-#line 522 "Tempo.c"
+#line 500 "Tempo.c"
 }
 
 static void

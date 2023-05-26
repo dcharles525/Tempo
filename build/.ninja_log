@@ -92,3 +92,11 @@
 364	586	1684971368676443977	com.github.dcharles525.Tempo@exe/meson-generated_src_Tempo.c.o	9a6b08ae3936527f
 586	649	1684971368740311425	com.github.dcharles525.Tempo	dc67ee2e437a09c5
 5	4671	0	meson-install	9bd7faa9472bf40f
+27	1024	1685129269030137997	build.ninja	159c829841426957
+17	460	1684971414822462019	com.github.dcharles525.Tempo@exe/src/Tempo.c	a1aafbf9aac74a83
+17	460	1684971414822462019	com.github.dcharles525.Tempo@exe/src/Libraries/Sense.c	a1aafbf9aac74a83
+17	460	1684971414822462019	com.github.dcharles525.Tempo@exe/src/Services/Temperature.c	a1aafbf9aac74a83
+17	460	1684971414822462019	com.github.dcharles525.Tempo@exe/src/Widgets/TempText.c	a1aafbf9aac74a83
+460	986	1685129270545100613	com.github.dcharles525.Tempo@exe/meson-generated_src_Tempo.c.o	9a6b08ae3936527f
+986	1117	1685129270677011286	com.github.dcharles525.Tempo	dc67ee2e437a09c5
+6	8350	0	meson-install	9bd7faa9472bf40f
