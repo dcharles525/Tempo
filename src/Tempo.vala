@@ -51,7 +51,7 @@ public class Tempo : Gtk.Application {
     Gtk.ApplicationWindow mainWindow = new Gtk.ApplicationWindow (this) {
       default_height = 200,
       default_width = 200,
-      title = "Tempo",
+      title = _("Tempo"),
       resizable = false
     };
     

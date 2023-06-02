@@ -2,14 +2,30 @@ decoration, window, window.background {
   border-radius: 8px;  
 }
 
-.temperature-font{
-  font-size: 60px;
-}
-
 .background.csd {
   border-radius: 8px;
 }
 
 .background.maximized, .background.solid-csd {
   border-radius: 8px;
+}
+
+.blue-text {
+  font-size: 60px;
+  color: #ACE5EE;
+}
+
+.yellow-text {
+  font-size: 60px;
+  color: #FFE787;
+}
+
+.orange-text {
+  font-size: 60px;
+  color: #FAB244;
+}
+
+.red-text {
+  font-size: 60px;
+  color: #F16F4E;
 }
