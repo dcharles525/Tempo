@@ -37,12 +37,6 @@ install_data (
   rename: meson.project_name () + '.gschema.xml'
 )
 
-install_data (
-  'data' / 'Tempo.desktop.in',
-  install_dir: '/etc/xdg/autostart',
-  rename: meson.project_name () + '.desktop.in'
-)
-
 # Install our icons in all the required sizes
 icon_sizes = ['16', '24', '32', '48', '64', '128']
 
