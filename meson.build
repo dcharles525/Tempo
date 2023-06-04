@@ -21,14 +21,14 @@ executable (
 install_data (
   'data' / 'Tempo.desktop.in',
   type: 'desktop',
-  rename: meson.project_name () + '.desktop.in',
+  rename: meson.project_name () + '.desktop',
   install_dir: get_option ('datadir') / 'applications'
 )
 
 install_data(
   'data' / 'Tempo.metainfo.xml.in',
   install_dir: get_option ('datadir') / 'metainfo',
-  rename: meson.project_name () + '.metainfo.xml.in'
+  rename: meson.project_name () + '.metainfo.xml'
 )
 
 install_data (
