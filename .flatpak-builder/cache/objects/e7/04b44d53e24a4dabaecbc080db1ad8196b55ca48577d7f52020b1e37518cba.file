@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.github.dcharles525.tempo</id>
+  <name>Tempo</name>
+  <name xml:lang="en">Tempo</name>
+  <summary>Is it hot in here?</summary>
+  <metadata_license>CC-BY-4.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <description>
+    <p>
+      A simple widget to show your cpu temperature. 
+    </p>
+  </description>
+  <launchable type="desktop-id">com.github.dcharles525.tempo.desktop</launchable>
+</component>

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+
+Name[en]=Tempo
+Name=Tempo
+Comment=Is it hot in here?
+Categories=Development;
+
+Icon=com.github.dcharles525.Tempo
+Exec=com.github.dcharles525.Tempo
+Terminal=false
