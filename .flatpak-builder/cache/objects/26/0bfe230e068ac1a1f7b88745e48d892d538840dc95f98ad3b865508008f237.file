@@ -1,0 +1,23 @@
+[Application]
+name=com.github.dcharles525.Tempo
+runtime=io.elementary.Platform/x86_64/7.2
+sdk=io.elementary.Sdk/x86_64/7.2
+command=com.github.dcharles525.Tempo
+
+[Context]
+shared=ipc;
+sockets=x11;wayland;session-bus;fallback-x11;
+filesystems=host;
+
+[Extension com.github.dcharles525.Tempo.Locale]
+directory=share/runtime/locale
+autodelete=true
+locale-subset=true
+
+[Extension com.github.dcharles525.Tempo.Debug]
+directory=lib/debug
+autodelete=true
+no-autodownload=true
+
+[Build]
+built-extensions=com.github.dcharles525.Tempo.Locale;com.github.dcharles525.Tempo.Debug;

@@ -1,0 +1,81 @@
+public class Tempo : Gtk.Application {
+
+  public Tempo () {
+
+    Object (
+      application_id: "com.github.dcharles525.tempo",
+      flags: ApplicationFlags.FLAGS_NONE
+    );
+
+  }
+
+  protected override void activate () {
+
+    GLib.Settings settings = new GLib.Settings (
+      "com.github.dcharles525.tempo"
+    );
+    Gtk.CssProvider cssProvider = new Gtk.CssProvider ();
+      
+    Gtk.Settings.get_default ().set (
+      "gtk-application-prefer-dark-theme", 
+      true
+    );
+
+    try {
+      
+      cssProvider.load_from_resource ("stylesheet");
+      Gtk.StyleContext.add_provider_for_screen (
+        Gdk.Screen.get_default (), 
+        cssProvider, 
+        Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+      );
+    
+    } catch (Error e) {
+      
+      error ("Cannot load CSS stylesheet: %s", e.message);
+
+    }
+
+    Gtk.HeaderBar headerbar = new Gtk.HeaderBar () {
+      title = "Tempo"
+    };
+
+    var headerContext = headerbar.get_style_context ();
+    headerContext.add_class (Gtk.STYLE_CLASS_FLAT);
+
+    Gtk.ApplicationWindow mainWindow = new Gtk.ApplicationWindow (this) {
+      default_height = 200,
+      default_width = 200,
+      title = _("Tempo"),
+      resizable = false
+    };
+    
+    TempText tempText = new TempText ();
+
+    mainWindow.set_titlebar (headerbar);
+    mainWindow.add (tempText.get_box ());
+    mainWindow.move (
+      settings.get_value ("x").get_int32 (), 
+      settings.get_value ("y").get_int32 ()
+    );
+    mainWindow.show_all ();
+    mainWindow.set_keep_above (true);
+    mainWindow.configure_event.connect(() => {
+
+      int x, y;
+      mainWindow.get_position (out x, out y);
+      settings.set_value ("x", x);
+      settings.set_value ("y", y);
+      return false;
+
+    });
+
+  }
+
+  public static int main (string[] args) {
+
+    return new Tempo ().run (args);
+
+  }
+
+}

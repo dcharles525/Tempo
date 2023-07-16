@@ -1,13 +1,21 @@
 project ('com.github.dcharles525.Tempo', 'vala', 'c')
 i18n = import ('i18n')
+gnome = import('gnome')
 
 # Set our translation domain
 add_global_arguments ('-DGETTEXT_PACKAGE="@0@"'.format (
   meson.project_name ()
 ), language:'c')
 
+gresource = gnome.compile_resources (
+  'gresource',
+  'data' / 'gresource.xml',
+  source_dir: 'data'
+)
+
 executable (
   meson.project_name (),
+  gresource,
   'src/Tempo.vala',
   'src/Libraries/Sense.vala',
   'src/Services/Temperature.vala',
@@ -20,7 +28,6 @@ executable (
 
 install_data (
   'data' / 'Tempo.desktop.in',
-  type: 'desktop',
   rename: meson.project_name () + '.desktop',
   install_dir: get_option ('datadir') / 'applications'
 )
@@ -54,22 +61,5 @@ foreach i : icon_sizes
 endforeach
 
 meson.add_install_script ('meson/post_install.py')
-
-i18n.merge_file (
-  input: 'data' / 'Tempo.desktop.in',
-  output: meson.project_name () + '.desktop',
-  po_dir: meson.source_root () / 'po',
-  type: 'desktop',
-  install: true,
-  install_dir: get_option ('datadir') / 'applications'
-)
-
-i18n.merge_file (
-  input: 'data' / 'Tempo.metainfo.xml.in',
-  output: meson.project_name () + '.metainfo.xml',
-  po_dir: meson.source_root () / 'po',
-  install: true,
-  install_dir: get_option ('datadir') / 'metainfo'
-)
 
 subdir ('po')

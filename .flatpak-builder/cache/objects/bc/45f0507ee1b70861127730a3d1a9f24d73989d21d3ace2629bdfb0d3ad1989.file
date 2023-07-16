@@ -1,0 +1,28 @@
+{
+  "id" : "com.github.dcharles525.Tempo",
+  "runtime" : "io.elementary.Platform",
+  "runtime-version" : "7.2",
+  "runtime-commit" : "8fe46de8a926976f96f6ef723d0c3ef25b19b72b33ed9d482055f34691f3bd99",
+  "sdk" : "io.elementary.Sdk",
+  "sdk-commit" : "c06e6cfc557eac6b0537bebeb4e8edf9ed83494816c781fd3b5212dd23064842",
+  "command" : "com.github.dcharles525.Tempo",
+  "modules" : [
+    {
+      "name" : "Tempo",
+      "buildsystem" : "meson",
+      "sources" : [
+        {
+          "path" : ".",
+          "type" : "dir"
+        }
+      ]
+    }
+  ],
+  "finish-args" : [
+    "--share=ipc",
+    "--socket=fallback-x11",
+    "--socket=wayland",
+    "--filesystem=host",
+    "--socket=session-bus"
+  ]
+}
